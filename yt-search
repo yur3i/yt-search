@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Uses invidio.us instances to search for youtube videos and then streams them in mpv from youtube
+#Author: Jorde Singh Kang<jorde@protonmail.ch>
+#License: GPLv3
+
+curl -s "https://invidio.us/search?q=$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "$1")" | grep '<a .*href="/watch.*">.*$' | \
+    grep -o '"/watch.*"\|<a.*>.*</a>' | \
+    sed "s/<[^>]*>//g" | \
+    tr -d '"' | \
+    sed 'N;s/\n/ /' | fzf | \
+    cut -f1 -d' ' | \
+    sed 's/^/https:\/\/youtu.be/g' | \
+    xargs mpv
