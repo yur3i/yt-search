@@ -1,0 +1,10 @@
+* yt-search
+A simple shell script that uses invidio.us to search for youtube videos and then streams them in mpv from youtube since [[https://github.com/trizen/youtube-viewer][youtube-viewer]] stopped working without a valid API key.
+** Usage
+   #+begin_src sh
+   yt-search <search term> <mpv options>
+   yt-search emacs "--no-video --ytdl-format=22"
+   #+end_src  
+** Dependencies
+ - [[https://github.com/ytdl-org/youtube-dl][youtube-dl]]
+ - [[https://github.com/junegunn/fzf][fzf]]
